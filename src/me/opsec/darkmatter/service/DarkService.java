@@ -112,7 +112,7 @@ public class DarkService extends IntentService {
     private void initEnvironment() {
         // Return if files installed already
         mBinDirectory = getFilesDir() + "/bin";
-        File script = new File(mBinDirectory, "script.sh");
+        File script = new File(mBinDirectory, "ratchet");
         if (script.exists()) {
             return;
         }
@@ -121,7 +121,6 @@ public class DarkService extends IntentService {
         new File(mBinDirectory).mkdirs();
 
         // copy scripts to "bin/" and set permissions to run them
-        copyScriptToBin(R.raw.script, "script.sh");
         copyScriptToBin(R.raw.tcplay, "tcplay");
         copyScriptToBin(R.raw.tc, "tc");
         copyScriptToBin(R.raw.ratchet, "ratchet");
