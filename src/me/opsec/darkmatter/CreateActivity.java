@@ -47,7 +47,7 @@ public class CreateActivity extends Activity {
         mHiddenSizeView = (EditText) findViewById(R.id.hidden_size);
         mVolumePathView = (EditText) findViewById(R.id.volume_path);
         if (mVolumePathView.getText().toString().length() == 0) {
-            mVolumePathView.setText("volume.dat");
+            mVolumePathView.setText("/sdcard/volume.dat");
         }
         mVolumePathView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -138,7 +138,7 @@ public class CreateActivity extends Activity {
             showProgress(true);
             Intent intent = new Intent(this, DarkService.class);
             intent.setAction(DarkService.ACTION_CREATE);
-            intent.putExtra(DarkService.EXTRA_VOLUME_PATH, getFilesDir() + "/" + volumePath);
+            intent.putExtra(DarkService.EXTRA_VOLUME_PATH, volumePath);
             intent.putExtra(DarkService.EXTRA_SIZE1, volumeSize);
             intent.putExtra(DarkService.EXTRA_SIZE2, hiddenSize);
             intent.putExtra(DarkService.EXTRA_PASS_1, password1);
