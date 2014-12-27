@@ -121,8 +121,8 @@ public class DarkService extends IntentService {
         new File(mBinDirectory).mkdirs();
 
         // copy scripts to "bin/" and set permissions to run them
-        copyScriptToBin(R.raw.tcplay, "tcplay");
-        copyScriptToBin(R.raw.tc, "tc");
+        //copyScriptToBin(R.raw.tcplay, "tcplay");
+        copyScriptToBin(R.raw.cs, "cs");
         copyScriptToBin(R.raw.ratchet, "ratchet");
         copyScriptToBin(R.raw.smem, "smem");
     }

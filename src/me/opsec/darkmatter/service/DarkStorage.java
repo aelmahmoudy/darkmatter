@@ -50,7 +50,7 @@ public class DarkStorage {
      */
     public void create(String volumePath, int size1, int size2, String pass1, String pass2) {
 
-        List<String> result = suRun("tc create %s %s %s %s %s", volumePath, size1, size2, pass1,
+        List<String> result = suRun("cs create %s %s %s %s %s", volumePath, size1, size2, pass1,
                 pass2);
 
         if (result == null) {
@@ -69,7 +69,7 @@ public class DarkStorage {
             return false;
         }
 
-        List<String> result = suRun("tc open %s %s %s", volumePath, mountPath, passwd);
+        List<String> result = suRun("cs open %s %s %s", volumePath, mountPath, passwd);
 
         if (result == null) {
             Application.toast(mAppContext,
@@ -82,13 +82,13 @@ public class DarkStorage {
     }
 
     public void close() {
-        List<String> result = suRun("tc close %s", getVolumePath());
+        List<String> result = suRun("cs close %s", getVolumePath());
         // TODO: What if this fails? We don't want to show a toast message in some situations, right?
     }
 
     public void delete() {
         String volumePath = getVolumePath();
-        List<String> result = suRun("tc delete %s", volumePath);
+        List<String> result = suRun("cs delete %s", volumePath);
         if (result == null) {
             Application.toast(mAppContext, String.format("Error deleting: %s.", volumePath));
         } else {
