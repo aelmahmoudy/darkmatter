@@ -100,12 +100,13 @@ function cs_mount() { # <tcdevice> <mountpath>
 function cs_unmount() { # <device>
   local device="$1"
 
+  local mountpath=$(mount | grep "$device" | cut -d\  -f2)
   local retries="2"
 
   # TODO: find mount path !
   # $(seq $retries)
   for i in $(seq $retries); do
-    $GUMOUNT $device
+    $GUMOUNT $mountpath
   done
 }
 
