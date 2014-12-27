@@ -39,19 +39,14 @@ public class DarkStorage {
     /**
      * @param volumePath
      *            full path from root
-     * @param size1
+     * @param size
      *            in megabytes
-     * @param size2
-     *            in megabytes
-     * @param pass1
-     *            outer password
-     * @param pass2
-     *            hidden password
+     * @param pass
+     *            password
      */
-    public void create(String volumePath, int size1, int size2, String pass1, String pass2) {
+    public void create(String volumePath, int size, String pass) {
 
-        List<String> result = suRun("cs create %s %s %s %s %s", volumePath, size1, size2, pass1,
-                pass2);
+        List<String> result = suRun("cs create %s %s %s %s %s", volumePath, size, pass);
 
         if (result == null) {
             Application

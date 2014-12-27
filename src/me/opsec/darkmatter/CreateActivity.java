@@ -24,10 +24,7 @@ public class CreateActivity extends Activity {
 
     private EditText mPassword1View;
     private EditText mPassword1ConfirmView;
-    private EditText mPassword2View;
-    private EditText mPassword2ConfirmView;
     private EditText mVolumeSizeView;
-    private EditText mHiddenSizeView;
     private EditText mVolumePathView;
     private View mLoginFormView;
     private View mCreateStatusView;
@@ -41,10 +38,7 @@ public class CreateActivity extends Activity {
 
         mPassword1View = (EditText) findViewById(R.id.password1);
         mPassword1ConfirmView = (EditText) findViewById(R.id.password1_confirm);
-        mPassword2View = (EditText) findViewById(R.id.password2);
-        mPassword2ConfirmView = (EditText) findViewById(R.id.password2_confirm);
         mVolumeSizeView = (EditText) findViewById(R.id.volume_size);
-        mHiddenSizeView = (EditText) findViewById(R.id.hidden_size);
         mVolumePathView = (EditText) findViewById(R.id.volume_path);
         if (mVolumePathView.getText().toString().length() == 0) {
             mVolumePathView.setText("/sdcard/volume.dat");
@@ -80,22 +74,14 @@ public class CreateActivity extends Activity {
 
         mPassword1View.setError(null);
         mPassword1ConfirmView.setError(null);
-        mPassword2View.setError(null);
-        mPassword2ConfirmView.setError(null);
         mVolumeSizeView.setError(null);
-        mHiddenSizeView.setError(null);
         mVolumePathView.setError(null);
 
         String password1 = mPassword1View.getText().toString();
-        String password2 = mPassword2View.getText().toString();
 
         int volumeSize = 2048;
         if (!TextUtils.isEmpty(mVolumeSizeView.getText())) {
             volumeSize = Integer.parseInt(mVolumeSizeView.getText().toString());
-        }
-        int hiddenSize = 1024;
-        if (!TextUtils.isEmpty(mHiddenSizeView.getText())) {
-            hiddenSize = Integer.parseInt(mHiddenSizeView.getText().toString());
         }
 
         String volumePath = mVolumePathView.getText().toString();
@@ -105,17 +91,8 @@ public class CreateActivity extends Activity {
         if (TextUtils.isEmpty(volumePath)) {
             mVolumePathView.setError(getString(R.string.error_field_required));
             errorView = mVolumePathView;
-        } else if (volumeSize <= hiddenSize) {
-            mVolumeSizeView.setError(getString(R.string.error_volume_size_must_be_larger));
-            errorView = mVolumeSizeView;
         } else if (TextUtils.isEmpty(password1)) {
             mPassword1View.setError(getString(R.string.error_field_required));
-            errorView = mPassword1View;
-        } else if (TextUtils.isEmpty(password2)) {
-            mPassword2View.setError(getString(R.string.error_field_required));
-            errorView = mPassword2View;
-        } else if (password1.equals(password2)) {
-            mPassword1View.setError(getString(R.string.error_passwords_must_not_be_the_same));
             errorView = mPassword1View;
         } else if (!password1.equals(mPassword1ConfirmView.getText().toString())) {
             mPassword1View.setError(getString(R.string.error_password_mismatch));
@@ -123,12 +100,6 @@ public class CreateActivity extends Activity {
             mPassword1View.setText("");
             mPassword1ConfirmView.setText("");
             errorView = mPassword1View;
-        } else if (!password2.equals(mPassword2ConfirmView.getText().toString())) {
-            mPassword2View.setError(getString(R.string.error_password_mismatch));
-            mPassword2ConfirmView.setError(getString(R.string.error_password_mismatch));
-            mPassword2View.setText("");
-            mPassword2ConfirmView.setText("");
-            errorView = mPassword2View;
         }
 
         if (errorView != null) {
@@ -139,10 +110,8 @@ public class CreateActivity extends Activity {
             Intent intent = new Intent(this, DarkService.class);
             intent.setAction(DarkService.ACTION_CREATE);
             intent.putExtra(DarkService.EXTRA_VOLUME_PATH, volumePath);
-            intent.putExtra(DarkService.EXTRA_SIZE1, volumeSize);
-            intent.putExtra(DarkService.EXTRA_SIZE2, hiddenSize);
-            intent.putExtra(DarkService.EXTRA_PASS_1, password1);
-            intent.putExtra(DarkService.EXTRA_PASS_2, password2);
+            intent.putExtra(DarkService.EXTRA_SIZE, volumeSize);
+            intent.putExtra(DarkService.EXTRA_PASS, password1);
             startService(intent);
             finish();
         }

@@ -61,40 +61,10 @@
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/password2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_password2"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/password2_confirm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_password2_confirm"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
                 android:id="@+id/volume_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_volume_size"
-                android:imeOptions="actionNext"
-                android:inputType="numberSigned"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/hidden_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_hidden_size"
                 android:imeOptions="actionNext"
                 android:inputType="numberSigned"
                 android:maxLines="1"

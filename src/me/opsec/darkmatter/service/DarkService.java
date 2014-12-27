@@ -37,10 +37,7 @@ public class DarkService extends IntentService {
     public static final String ACTION_SIM_REMOVED = "sim.absent";
 
     public static final String EXTRA_VOLUME_PATH = "volume.path";
-    public static final String EXTRA_SIZE1 = "size1";
-    public static final String EXTRA_SIZE2 = "size2";
-    public static final String EXTRA_PASS_1 = "pass1";
-    public static final String EXTRA_PASS_2 = "pass2";
+    public static final String EXTRA_SIZE = "size";
     public static final String EXTRA_PASS = "pass";
     public static final String EXTRA_MOUNT_PATH = "mount.path";
 
@@ -72,11 +69,9 @@ public class DarkService extends IntentService {
         if (ACTION_CREATE.equals(action)) {
             startForeground();
             String volumePath = extras.getString(EXTRA_VOLUME_PATH);
-            int size1 = extras.getInt(EXTRA_SIZE1);
-            int size2 = extras.getInt(EXTRA_SIZE2);
-            String pass1 = extras.getString(EXTRA_PASS_1);
-            String pass2 = extras.getString(EXTRA_PASS_2);
-            mStorage.create(volumePath, size1, size2, pass1, pass2);
+            int size = extras.getInt(EXTRA_SIZE);
+            String pass = extras.getString(EXTRA_PASS);
+            mStorage.create(volumePath, size, pass);
         } else if (ACTION_OPEN.equals(action)) {
             startForeground();
             String mountPath = extras.getString(EXTRA_MOUNT_PATH);

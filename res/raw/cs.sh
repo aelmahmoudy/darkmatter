@@ -157,7 +157,7 @@ function cs_init_device() { # <volpath> <target> <password>
 function cs_create() { # <volpath> <size> <ignore> <password>
   local volpath="$1"
   local size="$2"
-  local password="$4"
+  local password="$3"
 
   # dd /dev/zero, volpath, num_mb, "M" (or 'G' for num_gb)
   volume_create "$volpath" "$size" "M"
