@@ -162,9 +162,10 @@ function cs_create() { # <volpath> <size> <ignore> <password>
   # dd /dev/zero, volpath, num_mb, "M" (or 'G' for num_gb)
   volume_create "$volpath" "$size" "M"
 
-  local target="/sdcard/x/v"
+  local target=$(mktemp -d)
 
   cs_init_device "$volpath" "$target" "$password"
+  rmdir "$target"
 }
 
 function get_app_user() {
