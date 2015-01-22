@@ -46,7 +46,7 @@ public class DarkStorage {
      */
     public void create(String volumePath, int size, String pass) {
 
-        List<String> result = suRun("cs create %s %s %s %s %s", volumePath, size, pass);
+        List<String> result = suRun("cs create %s %s %s", volumePath, size, pass);
 
         if (result == null) {
             Application
