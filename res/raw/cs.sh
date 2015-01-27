@@ -100,7 +100,7 @@ function cs_mount() { # <tcdevice> <mountpath>
 function cs_unmount() { # <device>
   local device="$1"
 
-  local mountpath=$(mount | grep "$device" | cut -d\  -f2)
+  local mountpath=$(mount | grep "$device" | head -n 1 | cut -d\  -f2)
   local retries="2"
 
   # TODO: find mount path !
@@ -155,7 +155,7 @@ function cs_init_device() { # <volpath> <target> <password>
   cs_unmap "$name"
 }
 
-function cs_create() { # <volpath> <size> <ignore> <password>
+function cs_create() { # <volpath> <size> <password>
   local volpath="$1"
   local size="$2"
   local password="$3"
@@ -235,7 +235,8 @@ function cs_open() { # <volpath> <mountpath> <password>
   local path="$2"
   local password="$3"
 
-  local name=$(cs_map "$volume" "$password")
+  local absvolpath=$(readlink -f $volume)
+  local name=$(cs_map "$absvolpath" "$password")
   cs_mount "/dev/mapper/$name" "$path"
     
   for app in ${APPLIST[*]}; do
