@@ -94,7 +94,7 @@ function cs_mount() { # <tcdevice> <mountpath>
     mount -o remount,ro /
   fi
   
-  $GMOUNT -o "noatime,nodev" -t ext4 $tcdevice $path
+  $GMOUNT -o "noatime,nodev" -t ext4 $tcdevice $path < /dev/null
 }
 
 function cs_unmount() { # <device>
@@ -106,7 +106,7 @@ function cs_unmount() { # <device>
   # TODO: find mount path !
   # $(seq $retries)
   for i in $(seq $retries); do
-    $GUMOUNT $mountpath
+    $GUMOUNT $mountpath < /dev/null
   done
 }
 
@@ -183,7 +183,7 @@ function bind_mount() { # <from> <dest> <user>
                 return 1
   fi
 
-  $GMOUNT -o bind,user=$user,relatime,nodev $from $dest
+  $GMOUNT -o bind,user=$user,relatime,nodev $from $dest < /dev/null
   return $?
 }
 
@@ -213,10 +213,10 @@ function app_umount() { # <app_name>
   killall $appname >/dev/null 2>/dev/null
 
   if [ -d "/data/data/$appname" ]; then
-    $GUMOUNT "/data/data/$appname"
+    $GUMOUNT "/data/data/$appname" < /dev/null
   fi
   if [ -d "/sdcard/Android/data/$appname" ]; then
-    $GUMOUNT "/sdcard/Android/data/$appname"
+    $GUMOUNT "/sdcard/Android/data/$appname" < /dev/null
   fi
 }
 
