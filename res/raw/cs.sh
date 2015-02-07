@@ -13,10 +13,10 @@ mkdir -p /sdcard/Android/data
 
 GMOUNT=mount
 GUMOUNT=umount
-SUVERSION=$(su -v)
-if [ "$SUVERSION" != "${$SUVERSION%SUPERSU}" ]; then
-  GMOUNT=su --mount-master -c mount
-  GUMOUNT=su --mount-master -c umount
+API=$(getprop ro.build.version.sdk)
+if [ "$API" -ge 17 ]; then
+  GMOUNT="su --mount-master -c mount"
+  GUMOUNT="su --mount-master -c umount"
 fi
 
 function map_lookup() { # <volpath>
