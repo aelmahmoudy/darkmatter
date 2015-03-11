@@ -46,7 +46,7 @@ public class DarkStorage {
      */
     public void create(String volumePath, int size, String pass) {
 
-        List<String> result = suRun("cs create %s %s %s", volumePath, size, pass);
+        List<String> result = suRun("cs create \"%s\" %s \"%s\"", volumePath, size, pass);
 
         if (result == null) {
             Application
@@ -64,7 +64,7 @@ public class DarkStorage {
             return false;
         }
 
-        List<String> result = suRun("cs open %s %s %s", volumePath, mountPath, passwd);
+        List<String> result = suRun("cs open \"%s\" \"%s\" \"%s\"", volumePath, mountPath, passwd);
 
         if (result == null) {
             Application.toast(mAppContext,

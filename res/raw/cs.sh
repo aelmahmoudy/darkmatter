@@ -267,20 +267,20 @@ function cs_delete() { # <volpath>
 case $1 in
   "create")
     shift
-    cs_create $*
+    cs_create "$@"
     ;;
   "open")
     shift # discard first arg
-    cs_open $*
+    cs_open "$@"
     exit 0
     ;;
   "close")
     shift
-    cs_close $*
+    cs_close "$@"
     ;;
   "delete")
     shift
-    cs_delete $*
+    cs_delete "$@"
     ;;
   *)
     echo "$0 <create|open|close|delete> [args]" 
