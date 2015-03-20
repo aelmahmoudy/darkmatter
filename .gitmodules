@@ -1,0 +1,3 @@
+[submodule "jni/smem"]
+	path = jni/smem
+	url = hg::http://selenic.com/repo/smem
